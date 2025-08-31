@@ -1,0 +1,350 @@
+<html>
+    <head>
+        <title>
+             Python ==> Numpy Tutorial
+        </title>
+    </head>
+    <body>
+        <pre>
+            <code>
+                  ***** Python - Numpy Tutorial *****
+                
+               ==> NumPy ->   Numerical Python 
+               
+                Lists and Tuples are in-built data types in python 
+
+                  Advantages of Numpy Arrays over lists and tuples  : 
+                  ------------------------------------------------- 
+
+                  1. Allows several Mathematical Operations. 
+
+                  2. Faster Operations. 
+
+
+                  import numpy as np 
+
+              List Vs Numpy - Time taken
+              ----------------------------- 
+
+                  from time import process_time 
+ 
+              Time taken by a list:
+              --------------------- 
+
+                 python_list = [i for i in range(1000)]
+
+                 start_time = process_time()
+
+                 python_list = [i+5 for i in python_list]
+
+                 end_time = process_time()
+
+                 print(end_time - start_time)
+
+              Time taken by a Numpy Array :
+              ------------------------------ 
+
+                np_array = np.array([i for i in range(1000)])
+
+                start_time = process_time()
+
+                np_array += 5 // np_array = np_array + 5
+
+                end_time = process_time()
+
+                print(end_time - start_time) 
+
+
+        ==>   Numpy Arrays : 
+             ---------------- 
+
+
+             #list 
+
+             list1 = [1,2,3,4,5]
+
+             print(list1) // [1,2,3,4,5]
+
+             type(list1) // list1 
+             
+             #numpy array 
+
+             np_array = np.array([1,2,3,4,5])
+
+             print(np_array) // [1 2 3 4 5]
+             type(np_array) // numpy.ndarray (nd means n-dimensional array)
+
+             here arrays are similar to matrix 
+
+             # creating a 1 dimensional array 
+
+             a = np.array([1,2,3,4,5])
+
+             print(a) // [1 2 3 4 5]
+
+             a.shape // (5,) // here 5 is representing the number of columns 
+             
+             b = np.array([(1,2,3,4,5), (6,7,8,9,10)])
+
+             print(b) // [ [1 2 3 4 5 ] 
+                           [6 7 8 9 10]]
+
+
+             b.shape // (2,4) // here the first number represents number of rows and second number represents number of columns. 
+                                // so 2 represents number of rows and 4 represents number of columns
+                        
+             # with floating points 
+
+             c = np.array([(1,2,3,4,5), (6,7,8,9,10)], dtype = float)
+             print(c)  //  [ [1. 2. 3. 4. 5.] 
+                            [6. 7. 8. 9. 10.]]
+
+             
+             # initial placholders in numpy arrays 
+
+               # Create a numpy array of zeros
+               
+               x = np.zero((4,5))
+               print(x)
+
+               output : 
+
+               [[0. 0. 0. 0. 0.]
+                [0. 0. 0. 0. 0.]
+                [0. 0. 0. 0. 0.]
+                [0. 0. 0. 0. 0.]
+               ]
+
+               #  create a numpy array of ones 
+               
+                y = np.ones((3,3))
+                print(y)
+
+                output : 
+
+                [[1. 1. 1.]
+                 [1. 1. 1.]
+                 [1. 1. 1.]
+                ]
+
+               # numpy array of a particular value 
+
+               z = np.full((5,4),5)
+               print(z) 
+
+               output : 
+
+               [[5 5 5 5]
+                [5 5 5 5]
+                [5 5 5 5]
+                [5 5 5 5]
+                [5 5 5 5]
+               ]
+
+              #  create an identity matrix : [ diagonal will be 1 and remaining all are zeros]
+                 
+               a = np.eye(4)  // here we are not to give rows and columns here as identity matrix have same rows and columns 
+                            // so we will give one number only 
+
+                print(a)
+
+                [[1. 0. 0. 0.]
+                 [0. 1. 0. 0.]
+                 [0. 0. 1. 0.]
+                 [0. 0. 0. 1.]
+                ]
+
+              # create a numpy array with random values  - default we will get decimal numbers (float) between 0 and 1
+
+                b = np.random.random((3,4))
+                print(b)
+
+                [[0.06 0.03 0.04 0.07]
+                 [0.7 0.08 0.09 0.1]
+                 [0.02 0.6 0.5 0.2]
+                ]
+
+              # random integer values array within a specific range 
+
+                c = np.random.randint(10,100,(3,5)) // here first and second number represents range of numbers (print values between these two numbers )
+                                                    // (3,5) represents rows and columns 
+                print(c)   
+
+                [[24 82 43 91 73]
+                 [98 11 52 38 38]
+                 [13 68 44 21 11]
+                ]
+
+              # array of evenly spaced values -- specifying the number of values required
+
+                d = np.linspace(10,30,6)
+                print(d)
+
+                [10. 14. 18. 22. 26. 30.]
+
+              # array of evenly spaced values -- specifying the step 
+
+                e = np.arange(10,30,5)
+                print(e)
+
+                [10 15 20 25]
+
+              # convert a list to a numpy array 
+
+                 list2 = [10,20,20,20,50]
+
+                 np_array = np.asarray(list2)
+                 print(np_array)
+                 type(np_array)
+
+                 [10 20 20 20 50]
+                 numpy.ndarray 
+
+        ==> Analysing a numpy array : 
+             --------------------------- 
+
+             c = np.random.randint(10,90,(5,5))
+             print(c)
+
+             [[66 80 57 82 62]
+              [61 81 62 75 65]
+              [24 43 42 35 11]
+              [64 70 50 80 45]
+              [70 23 53 80 23]
+             ]
+
+            # array dimension 
+              
+              print(c.shape)
+
+              (5,5)
+
+            # number of dimensions 
+
+              print(c.ndim)
+
+              2 
+
+            # number of elements in an array 
+
+               print(c.size) 
+
+               25 
+
+            # checking the data type of the values in the array 
+
+               print(c.dtype)
+
+               int64
+
+        ==> Mathematical operations on a np array : 
+            --------------------------------------- 
+            
+            list1 = [1,2,3,4,5]
+            list2 = [6,7,8,9,10]
+
+            print(list1 + list2) // here when we use addition symbol it concatenate the two lists not adding element wise
+                                 // concatenate or jouns two lists 
+
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+            a = np.random.randint(0,10,(3,3))
+            b = np.random.randint(10,20,(3,3))
+
+            print(a)
+            print(b)
+            
+            [[7 2 0]
+             [8 8 6]
+             [5 7 0]]
+            [[15 10 13]
+             [18 14 14]
+             [12 13 10]]
+
+            print(a+b)
+            
+             [[22 12 13]
+              [26 22 20]
+              [17 20 10]]
+
+            same as for other operations 
+
+            print(a + b)
+            print(a * b)
+            print(a / b)
+
+          # we can even use functions to perform same tasks like above
+
+            print(np.add(a,b))
+            print(np.subtract(a,b))
+            print(np.multiply(a,b))
+            print(np.divide(a,b))
+
+        ==> Array Manipulation :
+            -------------------- 
+            
+            array = np.random.randint(0,10,(2,3))
+            print(array)
+            print(array.shape)
+
+            output : 
+
+            [[1 2 2]
+             [8 0 7]]
+
+            (2,3)
+
+            # transpose -- it will convert the rows into columns and viceversa
+            
+            trans = np.transpose(array)
+            print(trans)
+            print(trans.shape)
+
+            output : 
+
+            [[1 8]
+             [2 0]
+             [2 7]]
+
+            (3, 2)
+
+            # Another way to tranpose is using np.T 
+
+            trans2 = array.T 
+            print(trans2)
+            print(trans2.shape)
+
+            [[1 8]
+             [2 0]
+             [2 7]]
+
+            (3, 2)
+
+            # reshaping a array 
+
+            a = np.random.randint(0,10, (2,3))
+
+            print(a)
+            print(a.shape)
+
+            [[4 3 7]
+             [4 6 6]
+            ]
+
+            (2,3)
+         
+            b = a.reshape(3,2)
+
+            [[4 3]
+             [7 4]
+             [6 6]]
+
+            (3, 2)
+
+        
+
+
+            </code>
+        </pre>
+    </body>
+</html>
