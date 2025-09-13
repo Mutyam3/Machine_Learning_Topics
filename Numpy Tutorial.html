@@ -97,7 +97,6 @@
         ==>   Numpy Arrays : 
              ---------------- 
 
-
              #list 
 
              list1 = [1,2,3,4,5]
@@ -106,8 +105,158 @@
 
              type(list1) // list1 
              
-             #numpy array 
+             #NumPy Arrays (ndarrays) : 
 
+             NumPy arrays, or ndarrays, are the primary datastructure used in NumPy. 
+             They are homogeneous collections of elements with fixed dimensions and 
+             have many similarities to Python list but with additional functionality optimized for 
+             numerical computing. 
+
+             1D Arrays : 
+
+             1D Arrays are like traditional arrays or lists. They have a single row and can be indexed using a single index. 
+
+             # create a 1D array  
+              arr_1d = np.array([1,2,3,4,5])
+              print(arr_1d) # [1 2 3 4 5]
+              print(arr_1d[0]) # 1 
+
+             2D Arrays : 
+
+             2D Arrays, aslo knowm as matrices, have rows and columns. 
+             They are indexed using two indices, one for row and one for the column 
+
+             # create a 2D array 
+               arr_2d = np.array([[1, 2, 3],
+                                  [4, 5, 6],
+                                  [7, 8, 9])
+
+               print(arr_2d)
+               [[1 2 3]
+                [4 5 6]
+                [7 8 9]]
+
+             # Properties of nd Arrays : 
+
+             1. Shape : 
+                The Shape of an ndarray describes the size of each dimension of the array. 
+                It is represented as atuple of integers indicating the number of elements along each dimension. 
+
+                # create a 2D array 
+
+                arr_2d = np.array([[1,2,3], 
+                                   [4,5,6]])
+
+                # print the shape 
+                print("Shape of the array : ", arr_2d.shape) # Output : shape of the array : (2,3)
+             
+             2. Data Type(dtype) :
+                 
+                 The data type of an ndarray specifies the type of elements stored in the array. 
+                 NumPy arrays can hold elements of different types such as integers, float, boolean,etc., 
+
+                 # create an array with a specific data type 
+                   
+                    arr_float = np.array([1.1,2.2,3.3], dtype = np.float32)
+
+                 # Print the data type 
+                    
+                     print("Data type of the array:", arr_float.dtype) # Output : Data type of the array : float32 
+
+                     arr_float = np.array([1.1,2.2,3.3], dtype = np.int32)
+
+                     print(arr_float) # [1 2 3]
+                     print("Data type of the array:", arr_float.dtype) # Output : Data type of the array : int32
+                     
+
+                3. Size : 
+                      
+                     The Size of an ndarray is the total number of elements in the array. 
+                     It is equal to the product of the dimensions of the array. 
+
+                  # create a 3D array 
+                       arr_3d = np.zeros((2,3,4)) # 2 layers => z -axis | 3 layers => y - axis | 4 layers => x - axis
+                       print(arr_3d) 
+                       print(arr_3d.dtype)
+
+                  # Print the size 
+                        print("Size of the array : ", arr_3d.size) # Output : 24 ( 2 * 3 * 4) 
+                        
+                       [
+                        [ [0. 0. 0. 0.]
+                          [0. 0. 0. 0.]
+                          [0. 0. 0. 0.]
+                        ]
+                         
+                        [ [0. 0. 0. 0.]
+                          [0. 0. 0. 0.]
+                          [0. 0. 0. 0.]
+                        ]
+                       ]
+                        
+                      Size of the array : 24 
+                      
+                      
+                  4. Number of Dimensions (ndim)
+                        The ndim attribute of an ndarray specifies the number of dimensions or axes of the array. 
+
+                        # create a 4D array 
+
+                        arr_4d = np.ones((2, 3, 4, 5)) # 
+
+                        # print the number of dimensions 
+
+                        print("Number of dimensions:", arr_4d.ndim) # Output : 4 
+
+
+                        
+                   5. Itemsize : 
+
+                        The itemsize attribute of an ndarray specifies the size of each element in bytes. 
+                        
+                        # create an array of integers 
+
+                        arr_int = np.array([1,2,3])
+                        print(arr_int.dtype)
+
+                        # print the item size 
+                        print("Size of each element (in bytes) : ", arr_int.itemsize) # Output : 8 (for 64-bit integer)
+
+                        int64 
+                        Size of each element (in bytes): 8
+
+
+             3. NumPy Data types and precision : 
+
+                  NumPy Data Types (dtypes) : 
+
+                  NumPy provides a variety of datatypes to represent different kinds of numeric data. 
+                  These data types are important for controlling memory usage and ensuring data integrity in numerical computations. 
+
+                  Common Numpy Data Types: 
+                      => int : Integer (default size depends on the platform)
+                      => float : Floating point number (default size depends on the platform)
+                      => bool : Boolean (True or False)
+                      => complex : Complex number with real and imaginary parts 
+                      => uint : Unsigned Integer (no neagtive values)
+
+                 => Specifying Data types : 
+                    
+                     You can specify the data type of an ndarray using the dtype paramter of NumPy functions or 
+                     providing the data type as an argument to the array creation functions. 
+
+                       # create an array with aspecific data type 
+                         arr_int32 = np.array([1,2,3], dtype = np.int32)
+                         arr_float64 = np.array([1.1,2.2,3.3], dtype=np.float64)
+
+                         print("Data type of arr_int32:", arr_int32.dtype) # output : int32 
+                         print("Data type of arr_float64:", arr_float64.dtype) # Output : float64 
+
+                 => Precision : 
+
+                      
+                    
+------------------------------------------------------------------------------------------------------
              np_array = np.array([1,2,3,4,5])
 
              print(np_array) // [1 2 3 4 5]
@@ -222,6 +371,21 @@
                 [10. 14. 18. 22. 26. 30.]
 
               # array of evenly spaced values -- specifying the step 
+              => np.arange() is a function in NumPy used to create an array with regularly spaced values with a specified range. Its syntax is : 
+
+                numpy.arange([start,]stop,[step,] dtype=None)
+
+                start : Optional. The start of the interval(Inclusive). Default is 0. 
+                stop : The end of the interval. 
+                step : Optional. The step size between values. Default is 1. 
+                dtype : Optional. The data type of the array. If not specified, the datatype is inferred from the other input arguments. 
+                
+                # create an array from 0 to 9
+                  arr = np.arange(10)
+                  print(arr) # Output : [0 1 2 3 4 5 6 7 8 9]
+
+                  new_arr = np.arange(4,10)
+                  print(new_arr) # [4 5 6 7 8 9]
 
                 e = np.arange(10,30,5)
                 print(e)
