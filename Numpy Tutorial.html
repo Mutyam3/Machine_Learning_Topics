@@ -253,8 +253,435 @@
                          print("Data type of arr_float64:", arr_float64.dtype) # Output : float64 
 
                  => Precision : 
+                      
+                        Precision refers to the level of detail and accuracy with numerical values are represented.
+                        NumPy data types have different levels of precision, which determine the range of values they can represent and the amount of 
+                        memory they occupy. 
+
+                        # create an array with different data types 
+                           arr_int32 = np.array([1234567890, 1234567890], dtype = np.int32)
+                           arr_int64 = np.array([1234567890, 1234567890], dtype = np.int64)
+
+                           print("Data type of arr_int32:", arr_int32.dtype) # Output : int32 
+                           print("Data type of arr_int64:", arr_int64.dtype) # Output : int64 
+
+                           print(arr_int32) # [1234567890, 1234567890]
+
+                          * In this example, the 'int32' data type has limited precision compared to 'int64', which can represent 
+                            larger integers without loss of precision.
+
+
+                      => Impact of precision on Memory Usage : 
+
+                          # create arrays with different data types : 
+
+                             arr_float32 = np.array([1.1,2.2,3.3], dtype = np.float32)
+                             arr_float64 = np.array([1.1,2.2,3.3], dtype = np.float64)
+
+                             print("Memory usage of arr_float32 : ", arr_float32.itemsize * arr_float32.size, "bytes") # Output : 12 bytes (3 elements * 4 bytes per element)
+                             print("Memory usage of arr_float64 : ", arr_float64.itemsize * arr_float64.size, "bytes") # Output : 24 bytes (3 elements * 6 bytes per element)
+                      
+                             Output : 
+
+                             Memory usage of arr_float32 : 12 bytes 
+                             Memory usage of arr_float64 : 24 bytes 
+                      
+                      => Example differentiating float32 and float64 : 
+
+                         # Create a large array with float32 and float64 data types 
+                           large_array_float32 = np.arange(1000000, dtype = np.float32)
+                           large_array_float64 = np.arange(1000000, dtype = np.float64)
+
+                         # Calculate the sum of elements 
+                            sum_float32 = np.sum(large_array_float32)
+                            sum_float64 = np.sum(large_array_float64)
+
+                          print("Sum using float32 : ", sum_float32)
+                          print("Sum using float64 : ", sum_float64)
+
+                          Output : 
+
+                          Sum using float32 : 499999800000.0 
+                          Sum using float64 : 499999500000.0 # more precise than float32 because float64 has more memory space so it store precise values 
+
+                4. np.zeros , np.ones, np.full : 
+
+                    np.zeros creates an array filled with zeros. It takes the shape of the desired array as input and returns an array of that shape filled with zeros. 
+                    
+                    Syntax : 
+
+                            numpy.zeros(shape, dtype=float)
+
+                            shape : The shape of the array (tuple of integers).
+                            dtype : Opional. The datatype of the array. Default is float. 
+
+                            # creates a 2 * 3array filled with zeros 
+                            zeros_array = np.zeros((2,3))
+                            print(zeros_array)
+
+                    Output : 
+                             [ [0. 0. 0.]
+                               [0. 0. 0.]]
+                             float64 
+
+                    np.ones : 
+
+                      np.ones creates an array filled with ones.Similar to np.zeros, it takes the shape of the desired array as input and 
+                      returns an array of that shape filled with ones. 
+
+                      Syntax : 
+
+                              numpy.ones(shape,dtype=None)
+
+                              shape : The shape of the array (tuple of integers)
+                              dtype : Optional. The data type of the array. If not specified, the default is determined by the datatype of 1. 
+
+                              # create a 3 * 2 array filled with ones 
+
+                              ones_array = np.ones((3,2))
+                              print(ones_array)
+
+                              Output : 
+                                 [[1. 1.]
+                                  [1. 1.]
+                                  [1. 1.]
+                                 ]
+                      np.full : 
+
+                         np.full creates an array filled with a specified constant value. It takes the shape of the desired array and the constant value as 
+                         input and returns an array of that shape filled with the specified value. 
+
+                         Syntax : 
+                          
+                                numpy.full(shape, fill_value, dtype=None)
+
+                                Shape : The shape of the array(tuple of integers)
+                                fill_value : The constant value to fill the array with. 
+                                dtype : Optional. The data type of the array. If not specified, the default is determined by the datatype of fill_value. 
+
+                                # create a 2 * 2 array filled with 5 
+
+                                full_array = np.full((2,2),5)
+                                print(full_array) 
+
+                                Output : 
+
+                                [ [5 5]
+                                  [5 5]
+                                ]
+
+                  5. Array Operations - NumPy 
+
+                     5.1 Arithmetic Operations : 
+                          
+                        # Addition : 
+
+                          arr_sum = np.add([1,2,3], [4,5,6])
+                          print("Addition : ", arr_sum) # Output : [5 7 9]
+
+                        # Subtraction : 
+
+                           arr_diff = np.subtract([5,6,7],[2,3,1])
+                           print("Subtraction : ", arr_diff) # Output : [3 3 6]
+
+                        # Multiplication : 
+
+                           arr_mul = np.multiply([2,3,4],[3,4,5])
+                           print("Multiplication : ", arr_mul) # Output : [6 12 20]
+
+                        # Division : 
+                         
+                            arr_div = np.divide([10,12,14],[2,3,2])
+                            print("Division : ", arr_div) # Output : [5. 4. 7.]
+
+                        # Modulus : 
+
+                            arr_mod = np.mod([10,11,12],[3,4,5])
+                            print("Modulus : ", arr_mod) # Output : [1 3 2]
+
+                        # Exponentiation : 
+                          
+                            arr_pow = np.power([2,3,4],[2,3,2])
+                            print("Exponentiation : ", arr_pow) # Output : [4 27 16]
+
+                      5.2 Relational Operations : 
+
+                            # Create sample arrays 
+                             
+                            arr1 = np.array([1, 2, 3, 4])
+                            arr2 = np.array([2, 2, 4, 3])
+
+                            # Equal 
+                            print("Equal : ", arr1 == arr2) # Output : [False True False False] 
+
+                            # Not Equal 
+                            print("Not Equal : ", arr1 != arr2) # Output : [True False True True]
+
+                            # Greater than 
+                            print("Greater than : ", arr1 > arr2) # Output : [False False False True]
+
+                            # Greater than or Equal to 
+                            print("Greater than or Equal to : ", arr1 >= arr2) # Output : [False True False True]
+
+                            # Less than 
+                            print("Less than : ", arr1 < arr2) # Output : [True False False False]
+
+                            # Less than or Equal to : 
+                            print("Less than or Equal to : ", arr1 <= arr2) #Output : [True True True False]
+
+                            # Note : both arrays hsape should be same otherwise there will be no output : 
+                              arr1 = np.array([1, 2, 3, 4, 5])
+                              arr2 = np.array([2, 2, 4, 4])
+                              u will get an error:
+                              valueError : operands could not be broadcast together with shapes (5,) (4,) 
+
+                  6. Indexing and Slicing for 1D Arrays : 
+                    
+                       6.1 Indexing : 
+                         
+                            Indexing refers to accessing individual elements of an array using their position (index) within the array. 
+                            In NumPy, indexing starts from 0, so the first element has index 0, the second element has index 1, and so on. 
+
+                            # create a 1D array 
+                              
+                               arr = np.array([1, 2, 3, 4, 5])
+
+                            # Access individual elements using indexing 
+                             
+                               print("First element : ", arr[0]) # Output : 1 
+                               print("Second element : ", arr[1]) # Output : 2 
+                               print("Last element : ", arr[-1]) # Output : 5 (negative indexing)
+
+                        6.2 Slicing : 
+
+                              Slicing allows you to extract a subset of elements from an array by specifing a range of indices. 
+                              The basic syntax for slicing is 
+
+                              start :  stop : step, where start is the starting index (inclusive) 
+                                                          stop is the ending index (exclusive)
+                                                          step is the step size 
+
+                              # create a 1D array 
+                              
+                                arr = np.array([1,2,3,4,5])
+
+                              # Slice elements from index 1 to index 3 (exclusive)
+
+                                 print("Slice : ", arr[1:3]) # Output : [2 3]
+
+                              # Slice elements from index 0 to index 4 with step size 2 
+
+                                 print("Slice with step : ", arr[0 : 4 : 2]) # Output : [1 3]
+
+                         6.3 Negative indexing : 
+
+                                 Negative indexing allows you to access elements fromt the end of the array by specifying negatove indices.
+                                  -1 refers to the last element ,
+                                  -2 refers to the second last element, and so on 
+
+                              # Create a 1D array 
+                                
+                                 arr = np.array([1, 2, 3, 4, 5])
+
+                              # Access the lasr element using negative indexing 
+                               
+                                 print("Last element : ", arr[-1]) # Output : 5 
+
+                         6.4  Slicing with Omitted Indices : 
+                             
+                                 You can omit any of the slicing paramters to use default values.
+                                 Omitting start defaults to 0, omitting stop defaults to the end of the array,
+                                 and omittinf step defaults to 1. 
+                                 
+                              # create a 1D array 
+
+                                 arr = np.array([1,2,3,4,5])
+
+                              # Slice elements from the beginning to index 3 (exclusive)
+
+                                print("Slice with omitted start : ", arr[:3]) # Output : [1 2 3]
+
+                              # Slice elements from index 2 to the end 
+
+                                print("Slice with omitted stop : ", arr[2:]) # Output : [3 4 5]
+
+                              # Slice elements woth step size 2 
+
+                                print("Slice with omitted step : ", arr[::2]) # Output : [1 3 5]
+
+                  7. Indexing and slicing for 2D Arrays : 
+
+                          7.1 Indexing : 
+
+                          Indexing refers to accessing individual elements of an array using their position (index) within the array. 
+                          In a 2D array, indexing is done using rows and columns. 
+
+                             # create a 2D array 
+
+                                arr = np.array([1, 2, 3],
+                                               [4, 5, 6],
+                                               [7, 8, 9])
+
+                             # Access individual elements using indexing 
+
+                                print("Element at (0,0) : ", arr[0,0]) 0 row 0 column # Output : 1 
+                                print("Element at (1,2) : ", arr[1,2]) 1st row 2 column # Output : 6 
+
+                           7.2 Slicing : 
+
+                           Slicing allows you to extract a subset of elements from an array by specifying ranges of row and column indices. 
+                           The basic syntax for slicing is 
+
+                           start : stop : step, where start is the starting index (inclusive)
+                                                      stop is the ending index (exclusive)
+                                                      step is the step size 
+
+                             # create a 2D array 
+
+                                arr = np.array([ [1, 2, 3],
+                                                 [4, 5 , 6],
+                                                 [7, 8, 9]
+                                               ])
+
+                                # Slicing elements form rows 0 to 1 (exclusive) and columns 1 to 2 (exclusive)
+                                   print("Slice : ", arr[0:2, 1:3])
+
+                                   Output : 
+
+                                   Slice : [[2 3]
+                                            [5 6]
+                                           ]
+
+                                # Modify Slice 
+                                  arr[0:2, 1:3] = [[10,20],[30,40]]
+                                  print("Modified array after slicing :", arr)
+
+                                  Output : 
+
+                                  Modified array after slicing : 
+
+                                  [[1 10 20]
+                                   [4 30 40]
+                                   [7  8  9]
+                                  ]
+
+                           7.3 Negative Indexing : 
+
+                               Negative Indexing can also be used in 2D arrays to access elements from the end of the array. 
+
+                               # create a 2D array 
+
+                                arr = np.array([ [1, 2, 3],
+                                                 [4, 5 , 6],
+                                                 [7, 8, 9]
+                                               ])
+
+                               # Access the last element using negative indexing 
+                                 print("Last element : ", arr[-1, -1]) # Output : 9 
+                                  print("Last element : ", arr[-3, -1]) # Output : 3 
+
+                           7.4 Slicing with Omitted Indices : 
+
+                                You can omit any of the slicing parameters to use default values. 
+                                Omitting start defaults to 0, 
+                                omitting stop defaults to the end of the array, and 
+                                omitting step defaults to 1. 
+
+                                # create a 2D array 
+                                  arr = np.array([[1, 2, 3],
+                                                  [4, 5, 6],
+                                                  [7, 6, 9]])
+
+                                # Slice elements from rows 1 to the end and all columns 
+                                   print("Slice with omitted start and stop : ", arr[1:]) # Output : [[4 5 6] [7 8 9]]
+
+                                # Slice elements from all rows and columns 0 to 1 (exclusive) with step size 2 
+                                    print("Slice with omitted step : ", arr[:, 0:2:2]) # Output : [[1]
+                                                                                                   [4]
+                                                                                                   [7]
+                                                                                                  ]
+                  8. Mass Level Indexing and Slicing : 
+
+                     8.1 Boolean Indexing : 
+
+                        Boolean Indexing allows you to select elements from an array based on a condition. 
+                        You create a boolean mask indicating which elements satisfy the condition, and then use this mask 
+                        to extract the desired elements. 
+
+                        # create a 1D array 
+                           
+                           arr_1d = np.array([1,2,3,4,5])
+
+                        # Boolean mask for elements greater than 3 
+
+                           mask = arr_1d > 3    
+
+                         # use Boolean mask to select elements 
+                         
+                            selected_elements = arr_1d[mask]
+                            print("Slected elements : ", selected_elements) # [4 5]
+
+                        Explaination :  [1, 2, 3, 4, 5]          arr_1d > 3
+                                      False, False, True, True, True 
+
+                        # create 2D array
+                        
+                             arr_2d = np.array([[1, 2, 3],        False True True
+                                                [4, 5, 6],        True  True True 
+                                                [7, 8, 9]         True  True True 
+                                               ])
+
+                        # Boolean indexing to select elements greater than 2 
+
+                              result_2d = arr_2d[arr_2d > 2]
+                              print("Elements greter than 2 in 2D array : ", result_2d) # Output : [3 4 5 6 7 8 9]
+
+                      8.2 Fancy Indexing : 
+
+                          Fancy Indexing allows you to select elements from an array using arrays of indices. 
+                          You provide arrays of indices along each axis, and the elements at those indices are returned as a new array 
+
+                           # Create a 1D array 
+
+                             arr_1d = np.array([1,2,3,4,5])
+
+                           # Fancy indexing 
+
+                             indices = [0,2,4]
+                             selected_elements = arr_1d[indices]
+                             print("Selected elements : ", selected_elements) # Output : [1 3 5]
+
+                   9. Playing with Arrays : 
+
+                       9.1 Transposing Arrays : 
+
+                             
+
+
+
+                          
+
+                            
 
                       
+                        
+
+
+                                  
+
+
+
+                                
+
+                          
+
+                            
+
+
+                       
+
+
+
                     
 ------------------------------------------------------------------------------------------------------
              np_array = np.array([1,2,3,4,5])
