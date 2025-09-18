@@ -1067,15 +1067,130 @@
 
                              # Split the array into 3 equal parts 
                              x_split = np.split(x,3)
-                             print("Split array : ", x_split)
+                             print("Split array : ", x_split) # [array([0,1,2]), array([3,4,5]), array([6,7,8])]
+
 
                           2. np.array_split : Similar to np.split, but allows for splitting into unequal subarrays. 
                               
                               # split the array into 4 parts, which will not be equal 
                               x_array_split = np.array_split(x, 4)
-                              print("Array split into unequal parts : ", x_array_split)
+                              print("Array split into unequal parts : ", x_array_split) # [array([0,1,2]), array([3,4]), array([5,6]), array([7,8])]
 
-                          3. 
+                          3. np.hsplit and np.vsplit : These are specific cases of split for horizontal and vertical splitting respectively, useful for 2D arrays (matrices). 
+                                 
+                                y = np.array([[1, 2, 3], [4, 5, 6]])
+                                print("Original 2D array : ", y) #  [ [1 2 3]
+                                                                      [4 5 6]
+                                                                    ]
+                                                                    
+                                # Horizontal split : 
+                                y_hspit = np.hsplit(y,3)
+                                print("Horizontally split : ", y_hsplit) # [ array([[1], [4]]), array([[2], [5]]), array([[3],[6]])]
+
+                                # Vertical split : 
+                                y_vsplit = np.vsplit(y,2)
+                                print("Vertically split : ", y_vsplit) # [array([[1,2,3]]), array([[4,5,6]])]
+
+                           4. np.concatenation : 
+                               
+                                     Concatenates a sequence of arrays along an existing axis. 
+
+                                     a = np.array([1,2,3])
+                                     b = np.array([4,5,6])
+
+                                     # Concatenate along the first axis 
+                                     concatenated = np.concatenate((a,b))
+                                     print("Concatenated array : ", concatenated) # [1 2 3 4 5 6]
+
+                           5. np.hstack and np.vstack : 
+                            
+                                      These are specific cases of concatenate for horizontal and vertical stacking respectively. 
+                                      a = np.array([1,2,3])
+                                      b = np.array([4,5,6])
+
+                                      # Horizontal stack 
+                                        h_stacked = np.hstack((a,b))
+                                        print("Horizontally stacked : ", h_stacked) # [1 2 3 4 5 6]
+
+                                      # Vertical stack 
+                                        v_stacked = np.vstack((a,b))
+                                        print("Vertically stacked : ", v_stacked) # [ [1  2  3]
+                                                                                      [4  5  6]
+                                                                                    ]
+
+
+                    14. Adding and Removing Elements : 
+
+                          These operations allow you tomodify array sizes dynamically. 
+
+                          1. np.append :  Adds elements to the end of an array. 
+
+                              # Append elements to the array 
+                              a = np.array([1, 2, 3])
+
+                              appended = np.append(a, [7,8])
+                              print("Appended array : ", appended) # [1 2 3 7 8]
+
+                          2. np.insert : insert elements at a specific position in the array. 
+
+                              # Insert elements into the array 
+                                inserted = np.insert(a, 1, [9,10]) # at 1 index i am inserting 9 and 10 
+                                print("Array with inserted elements : ", inserted) # [ 1 9 10 2 3 ]
+
+                          3. np.delete : Removes elements at a specific position from the array 
+                             
+                                     # create a one-dimesnional array 
+                                         
+                                       a = np.array([1,2,3,4,5])
+
+                                     # Delete the element at index 2 
+
+                                         result = np.delete(a,2)
+                                         print("Array after deleting element at index 2 : ", result) # [1 2 4 5]
+
+                                     # Delete multiple elements : 
+
+                                         result = np.delete(a, [0,3]) # delete the elements at 0 and 3
+                                         print("Array after deleting elements at indices 0 and 3 : ", result) # [2 3 5]
+
+                                     # Create a two-dimensional array 
+                                         b = np.array([[1,2,3], [4,5,6], [7, 8, 9]])
+
+                                         # Delete the second row 
+                                           result = np.delete(b, 1, axis = 0)
+                                           print("Array after deleting second row : ", result) # [ [1 2 3]
+                                                                                                   [7 8 9]
+                                                                                                 ]
+
+                                         # Delete the third column 
+                                            result = np.delete(b,2, axis = 1)
+                                            print("Array after deleteing third column : ", result) # [ [1  2]
+                                                                                                       [4  5]
+                                                                                                       [7  8]
+                                                                                                     ]
+                                              
+                                      
+
+                                      
+
+
+                                       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                          
 
 
 
