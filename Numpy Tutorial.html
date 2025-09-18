@@ -654,6 +654,408 @@
                    9. Playing with Arrays : 
 
                        9.1 Transposing Arrays : 
+                           
+                              Transposing an array means exchanging its rows and columns. 
+                              In NumPy, you can transpose an array using the T attribute or the transpose() function. 
+
+                              # create a 2D array 
+                              arr_2d = np.array([ [1, 2, 3], 
+                                                  [4, 5, 6]
+                                               ])
+
+                              print(arr_2d.shape) # (2, 3)
+
+                              # Transpose the array 
+                              transposed_arr = arr_2d.T 
+                              print(arr_2d.shape) # (3,2)
+                              print("Transposed array:")
+                              print(transposed_arr)
+                              #Output : 
+                              [ [1 4]
+                                [2 5]
+                                [3 6]
+                              ]
+
+                        9.2 Swapping Axes : 
+
+                                  Swapping axes means rearranging the dimensions of an array. You can swap axes using the swapaxes() function. 
+
+                                # create a 2D array 
+                                arr_2d = np.array([ [1, 2, 3],
+                                                    [4, 5, 6]
+                                                 ])
+
+                                # Swap axes 
+                                 swapped_arr = arr_2d.swapaxes(0,1)
+                                 print("Swapped array:")
+                                 print(swapped_arr) 
+
+                                 Output :
+                                 [[1 4]
+                                  [2 5]
+                                  [3 6]]
+
+                                # Create a 3D array of shape (2, 3, 4)
+                                # Think of it as 2 layers of 3 * 4 matrices. 
+
+                                array_3d = np.array([[ [1, 2, 3, 4],
+                                                       [5, 6, 7, 8],            # 1 layer
+                                                       [9, 10, 11, 12] ],
+                                                     [ [13, 14, 15, 16],
+                                                       [17, 18, 19, 20],        # 2 layer
+                                                       [21, 22, 23, 24]
+                                                     ]
+                                                   ])
+
+                                 print("Original array shape: ", array_3d.shape) # (2,3,4)
+
+                                 # Swap the first and last axes (depth with columns) 
+                                    
+                                    swapped_array = np.swapaxes(array_3d,0,2)  # 0axes 2axes we are swapping
+
+                                 print("Swapped array shape:", swapped_array.shape) # (4,3,2)
+
+                                 print("Swapped array data :", swapped_array)
+
+                                 [[ [1 13]
+                                    [5 17]
+                                    [9 21]
+                                  ]
+
+                                  [ [2 14]
+                                    [6 18]
+                                    [10 22]
+                                  ]
+
+                                  [ [4 16]
+                                    [8 20]
+                                    [12 24]
+                                  ]
+                                 ]
+                                                    /\
+                                 |                  /
+                                 |  0 axis         /  2 axis 
+                                 |                /
+                                \ /  -------------> 1 axis 
+
+                        9.3 Pseudo-random Number Generation : 
+
+                            NumPy provides various functions for generating pseudo-random numbers. 
+                            These functions are located in the numpy.random module. 
+                            You can generate random numbers from different distributions, such as uniform, normal,binomial.etc.,
+
+                            # Pseudo-random Number Generation in 1D array : 
+
+                            # Generate 5 random integers between 1 and 10 
+                            random_integers = np.random.randint(1,10,size = 5)
+                            print("Random integers (1D):", random_integers)
+
+                            # Generate 5 random numbers from a normal distribution 
+                            random_normal = np.random.normal(size=5)
+                            print("Random numbers from normal distribution (1D):", random_normal)
+
+                            #Output :
+
+                            Random integers (1D) : [9 6 1 8 4]
+                            Random numbers from normal distribution (1D) : [1.06863026  0.48286822 0.55086636 -0.02394996  0.72991067]
+
+                            # Pseudo-random Number Generation in 2D Array : 
+
+                            # Generate a 2D array of shape (3,3) with random integers between 1 and 10 
+
+                            random_integers_2d = np.random.randint(1,10,size = (3,3))
+                            print("Random integers (2D):")
+                            print(random_integers_2d)
+
+                            # Generate a 2D array of shape (3,3) with random numbers from a normal distribution 
+
+                            random_normal_2d = np.random.normal(size = (3,3))
+                            print("Random numbers from normal distribution (2D):")
+                            print(random_normal_2d)
+
+                            #Output : 
+                            Random integers (2D):
+                            [ [1 5 2]
+                              [8 2 7] 
+                              [1 3 9]
+                            ]
+
+                            Random numbers from normal distribution (2D):
+                            [[-0.530259 -1.25998378   0.04791921]
+                             [0.54604908 0.21002351  -0.75041193]
+                             [0.18459713 -1.27315366 0.81455921]
+                            ]
+
+
+                  10. Operations on 2D Arrays : 
+
+                      10.1 Matrix Multiplication (np.matmul()) : 
+
+                      Matrix multiplication is a fundamental operation in linear algebra, where you multiply two matrices 
+                      to obtain a new matrix. In NumPy, you can perform matrix multiplication using the np.matmul() function. 
+
+                      # Define matrices : 
+                      matrix_a = np.array([[1,2],[3,4]])
+                      matrix_b = np.array([[5,6],[7,8]])
+
+                      # Matrix multiplication using np.matmul()
+
+                      result = np.matmul(matrix_a, matrix_b)
+                      print("Matrix Multiplication : ")
+                      print(result)
+
+                      #Output : 
+
+                      Matrix Multiplication :
+                      [[19 22]
+                       [43 50]
+                      ]
+
+                      10.2 Reshaping (np.reshape()) : 
+
+                      Reshaping an array means changing the shape of the array without changing its data. 
+                      It's useful for converting arrays between different dimensions or rearranging their layout. 
+
+                      # Reshaping an array 
+                      arr = np.arange(1,10) # 1D array from 1 to 9 
+                      print(arr) # [1 2 3 4 5 6 7 8 9]
+
+                      reshaped_Arr = arr.reshape((3,3)) # Reshape to a 3*3 matrix 
+                      print("Reshaped array : ")
+                      print(reshaped_arr)
+
+                      #Output : 
+                      [[1 2 3]
+                       [4 5 6]
+                       [7 8 9]
+                      ]
+
+                      Note : if you give (1,11) i.e 1 to 10 elements won't fit into the 3*3 matrix so we need to define 
+                             right values that fits into a matrix 
+
+                 
+                      10.3 Transpose(np.transpose()) : 
+ 
+                          Transposing a matrix means flipping its rows with its columns. 
+                          In NumPy, you can obtain the transpose pf a matrix using the np.transpose() function or the .T attribute. 
+
+                          # Transposing a matrix 
+                          matrix = np.array([
+                                            [1, 2, 3],
+                                            [4, 5, 6]
+                                           ])
+                          
+                           transposed_matrix = np.transpose(matrix)
+                           print("Transposed matrix :")
+                           print(transposed_matrix)
+
+                           # Output : 
+                           Transposed matrix : 
+                           [ [1 4]
+                             [2 5]
+                             [3 6]
+                           ]
+
+                      10.4 Aggregate function : 
+
+                          Aggregate function in NumPy are functions that operate on arrays and return a single value, 
+                          summarizing the data in some way. Common aggregate functions include np.sum(), np.max(), np.min(),
+                          np.mean(), etc., 
+
+                          Aggregate functions : 
+
+                          matrix = np.array([1, 2, 3],
+                                            [4, 5, 6]
+                                            )
+
+                          print("Sum of all elements : ", np.sum(matrix)) # Output : 21 
+                          print("Maximum element : ", np.max(matrix)) # Output : 6 
+                          print("Minimum element : ", np.min(matrix)) # Output : 1 
+                          print("Mean of all elements : ", np.mean(matrix)) # Output : 3.5
+                           
+                    
+                  11. Universal Functions (ufuncs) : 
+
+                      11.1 Basic Arithmetic Operations : 
+
+                           # Create a sample array : 
+                           arr = np.array([1, 2, 3, 4, 5])
+
+                           # Element-wise addition 
+                           result_add = np.add(arr,2) # Add 2 to each element 
+                           print("Addition : ", result_add) # [3 4 5 6 7]
+
+                           # Element-wise multiplication 
+                           result_mul = np.multiply(arr,3) # Multiply each element by 3 
+                           print("Multiplication : ", result_mul) # [3 6 9 12 15]
+
+
+                       11.2 Triginimetric functions : 
+
+                              # Trigonometric function : 
+
+                               angles = np.array([0,np.pi/4, np.pi/2, 3*np.pi/4, np.pi])
+
+                              # Sine 
+                                result_sin = np.sin(angles)
+                                print("Sine : ", result_sin)
+
+                              # cosine 
+                                result_cos = np.cos(angles)
+                                print("Cosine : ", result_cos)
+
+                        11.3 Exponential and Logarithmic Functions : 
+
+                                # Exponential and Logarithmic functions : 
+
+                                  arr = np.array([1, 2, 3, 4, 5])
+
+                                # Exponential 
+                                  
+                                   result_exp = np.exp(arr) # exponential value 2.718 [e^1, e^2,....]
+                                   print("Exponential : ", result_exp)
+
+                                # Natural logarithm 
+
+                                   result_log = np.log(arr)
+                                   print("Natural logarithm : ", result_log)
+
+                        11.4 Statistical functions : 
+
+                                 # Statistical function :
+                                   arr = np.array([1, 2, 3, 4, 5])
+
+                                 # Mean 
+                                   result_mean = np.mean(arr)
+                                   print("Mean : ", result_mean) # 3.0 
+
+                                 # standard deviation 
+                                    result_std = np.std(arr)
+                                    print("Standard deviation : ", result_std) # 1.41421356 
+
+                         11.2 Comparison functions : 
+
+                                 # Comparison functions 
+                                    arr1 = np.array([1, 2, 3, 4, 5])
+                                    arr2 = np.array([2, 3, 3, 4, 4])
+
+                                 # Greater than 
+                                     result_gt = np.greater(arr1, arr2)
+                                     print("Greater Than : ", result_gt) # [False False False False False True]
+
+                                 # Less than or equal to 
+                                      result_lte = np.less_equal(arr1, arr2)
+                                      print("Less than or equal to : ", result_lte) # [True True True True False]
+
+
+                          11.6 Broadcasting : 
+
+                                   Ufuncs also support broadcasting, which means they can operate on arrays of different shapes. 
+                                   NumPy automatically broadcasts arrays to perform element-wise operations 
+
+                                   arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+                                   # Element-wise addition with scalar 
+                                   result_broadcast = arr + 2
+                                   print("Broadcasting with scalar : ")
+                                   print(result_broadcast)
+
+                                   #Output : 
+                                   [[3 4 5]
+                                    [6 7 8]
+                                   ]
+
+                  12. Array Manipulation : 
+
+                     **  Playing with Shapes : 
+
+                     1. reshape :  The reshape method returns a new array with specified shape, without changing the data. 
+
+                       # Create a one-dimensional array of 12 elements 
+                          
+                          a = np.arange(12)
+                          print("Original array : ", a) # [0 1 2 3 4 5 6 7 8 9 10 11]
+
+                       # Reshape it to a 3 * 4 two-dimensional array 
+                         
+                          b = a.reshape(3,4)
+                          print("Reshaped array : ", b)
+
+                          [ [0 1 2 3]
+                            [4 5 6 7]
+                            [8 9 10 11]
+                          ]
+
+                     2. resize : The resize method changes the shape and size of an array in-place. 
+                          This method can alter the original array and fill in with repeated copies of a if the new array is larger than 
+                          the original. 
+
+                          # Resize the array in-place to 2 * 6 
+
+                          a = np.arange(10)
+                          a.resize(2,6)
+                          print("Resized array : ") 
+                          [ [0 1 2 3 4 5]
+                            [6 7 8 9 0 0]
+                          ]
+
+                     3. ravel : The ravel method returns a flattened one-dimensional array. It's a convenient way to convert 
+                                    any multi-dimensional array into a flat 1D array. 
+
+                              # Flatten the 3*4 array to a one-dimensional array 
+
+                              flat = b.ravel()
+                              print("Flattened array : ", flat) # [0 1 2 3 4 5 6 7 8 9 10 11]
+
+                     4. flatten : Similar to ravel, but flatten returns a copy instead of a view of the original data, thus not affecting the original array. 
+                           
+                              # Create a copy of flattened array 
+                                flat_copy = b.flatten()
+                                print("Flattened array copy :", flat_copy) # [0 1 2 3 4 5 6 7 8 9 10 11]
+
+                     5. Difference between ravel and flatten : 
+
+                             # creating a 2D array 
+                                a = np.array([[1,2], [3,4]])
+
+                             # Flattening using ravel 
+                                
+
+
+
+                          
+
+
+
+                                  
+
+                                
+
+                                
+
+
+
+
+
+                          
+
+
+
+
+
+
+
+
+                         
+
+
+                                     
+
+
+
+
+
+                                
 
                              
 
