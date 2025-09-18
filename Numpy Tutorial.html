@@ -1019,6 +1019,69 @@
                                 a = np.array([[1,2], [3,4]])
 
                              # Flattening using ravel 
+                                b = a.ravel() 
+                                b[0] = 100 # Modifying the raveled array 
+
+                             # Flattening using flatten 
+                                 c = a.flatten()
+                                 c[1] = 200 # Modifying the flattened array 
+
+                                print("Original array after modifying reveled array : ", a) # [[100 2] [3 4]]
+                                print("Original array after modifying flattened array does not change : ", a) # [[100 2][3 4]]
+
+                      6. Squeeze : The Squeeze method is used to remove axes of length one from an array  
+
+                               # create an array with a singleton dimension 
+                                c = np.array([[[1,2,3,4]]])
+                                print("Original array with singleton dimension : ", c.shape) # (1,1,4)
+
+                               # Squeeze to remove singelton dimension 
+                                 squeezed = c.squeeze()
+                                 print(squeezed)            # [1 2 3 4]
+                                 print("Squeezed array : ", squeezed.shape) # (4, )
+
+                      7. expand_dims : The Opposite of squeeze, expand_dims is used to add an axis at a specified position. 
+                                  
+                                 # Add an axis at index 1 
+                                   expanded = np.expand_dims(squeezed, axis = 1) # squeezed value here is [1 2 3 4]
+                                   print(expanded) 
+                                   print("Expanded array shape : ", expanded.shape)
+
+                                   # Output : 
+                                   [[1]
+                                    [2]
+                                    [3]
+                                    [4]
+                                   ]
+                                   Expanded array shape : (4,1)
+
+                  13. Splitting and Joining : 
+
+                          Splitting allows you to divide large arrays into smaller arrays. 
+                          This can be useful for parallel processing tasks or during situations where subsets of data need to be analyzed separately. 
+
+                          1. np.split : Splits an array into multiple sub-arrays. 
+
+                             x = np.arange(9)
+                             print("Original array : ", x) # [0 1 2 3 4 5 6 7 8]
+
+                             # Split the array into 3 equal parts 
+                             x_split = np.split(x,3)
+                             print("Split array : ", x_split)
+
+                          2. np.array_split : Similar to np.split, but allows for splitting into unequal subarrays. 
+                              
+                              # split the array into 4 parts, which will not be equal 
+                              x_array_split = np.array_split(x, 4)
+                              print("Array split into unequal parts : ", x_array_split)
+
+                          3. 
+
+
+
+
+
+
                                 
 
 
