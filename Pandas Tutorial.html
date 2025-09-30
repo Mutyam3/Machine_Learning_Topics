@@ -437,8 +437,144 @@
 
                     merge_df = pd.merge(roles_df, contact_df, on = 'Name')
 
-             ==> Importing Dataset 
+             ==> Importing Dataset : 
 
+                    Importing datasets into pandas is straightforward and pandas supports various file formats like 'csv','xlsx','json','sql',etc., 
+
+                    df = pd.read_csv('filmtv_movies.csv')
+
+                    # Display the first few rows of the DataFrame to understand its structure and contents 
+
+                    df.head()
+
+
+              ==> Pandas - DataFrame : 
+
+                    Properties of DataFrame : 
+
+                  ** df.head(n) : The df.head(n) method is used to view the first n rows of the DataFrame. 
+                                  This is particularly useful for getting a quick snapshot of the 
+                                  data, especially to understand the structure and the types of data contained in each column, 
+                                  If you don't specify n, the default number of rows displayed is 5. 
+
+                                  df.head(10) # Displays the first 10 rows of the DataFrame 
+
+                  ** df.tail(n) : The df.tail(n) method is similar tot df.head(n) but for the end of the DataFrame. 
+                                  It returns the last n rows. This is useful to see the most recent or the last few entries in your data, 
+                                  depending on the ordering of your dataset. Like df.head(n), the default value of n is 5 if it isn't specified 
+
+                                  df.tail(10) # Displays the last 10 rows of the DataFrame. 
+
+                  ** df.shape : The df.shape attribute of a DataFrame returns a tuple representing the dimensionality of the DataFrame. 
+                                The first element of the tuple is the number of rows, and the second is the number of columns. 
+                                This is useful when you need to know how large the dataset is, such as when you are preprocessing data or ensuring that data manipulations have e
+                                executed correctly. 
+
+                                  df.shape # Output : (number of rows, number of column)
+
+                  ** df.columns : The df.columns attribute returns an index object containing the column labels of the DataFrame. 
+                                  Knowing the column names id essential for accessing specific data in the DataFrame, performing analyses, and for data manipulation tasks like sorting, 
+                                  filtering, or applying functions to certail columns. 
+
+                                  df.columns # List all the column names in the DataFrame 
+
+                  ** Inspecting Data Types : Each Column in a DatFrame has a Specific data type. Understanding these types is crucial for proper data manipulation 
+
+                                  # Display the data types of each column 
+                                  df.dtypes 
+
+                  ** Summary Statistics :  For numerical data, it's useful to get a sense of their central tendency and spread 
+                                            
+                                   # Display summary Statistics for numerical columns 
+                                     df.describe()
+
+            ==> Accessing and Filtering : 
+
+                   
+                   ** df.loc : The df.loc method is used for label-based indexing, meaning you can access rows and columns using their labels (i.e index names and column names).
+                               It allows for selecting a subset of rows and columns from a DataFrame with powerful and flexible slicing, indexing, and filtering options. 
+                               
+                               # Selecting all rows and a specific column by label 
+                               titles = df.loc[:,'title']
+
+                               # Selecting a range of rows and multiple columns by labels 
+                                subset = df.loc[10:20, ['title','year','genre']] #  it will print from 10 to 20 rows
+                                subset
+
+                               # Conditional Selection using a boolean array 
+                                 dramas = df.loc[df['genre'] == 'Drama']
+
+                               # multiple_condition = df.loc[(df['genre']=='Drama') & (df['avg_vote']>7.0)]
+                                  multiple_condition
+
+                    ** df.iloc : While df.iloc uses labels for indexing, df.iloc allows for integer-based indexing. 
+                                 You use df.iloc to access rows and columns by their integer positions, which makes it useful 
+                                 when you need to access data by its position in the DataFrame.
+
+                               # Selecting a single row from the DataFrame 
+
+                                   single_row = df.iloc[0]
+                                   single_row
+
+                               # Selecting a specific row and columns by integer indices.
+                                   
+                                   specific_data = df.iloc[10, [1,2,3]] # row at index 10 and column at  
+                                   specific_data 
+
+                               # Slicing to get multiple rows and columns 
+                                 
+                                   multi_slice = df.iloc[10:15,0:4] # Rows 10 to 14 and columns 0 to 3 
+                                   multi_slice
+
+                    ** df.at : df.at is designed to access a single value for a row / column label pair. 
+                               It is very similar to df.loc for accessing scalar values but is optimized for faster access when you only 
+                               need to get or set a single value in DataFrame. 
+
+                               # Access a specific single value using row label and column name 
+                                 
+                                   title_of_first_movie = df.at[0, 'title']
+                                   title_of_first_movie
+
+                    ** Filtering Based on Criteria : Filtering data based on specific criteria is a common operation
+
+                           #   Filter movies released after 2010 
+                              recent_movies = df[df['year']>2010]
+                              recent_movies
+
+                           #   Movies with a high public vote and specific genre 
+                               highly_rated_thrillers = df[(df['public_vote'] >= 8) & (df['genre'] == 'Thriller')]
+                               highly_rated_thrillers
+
+                           #   Movies from a specific country 
+                               us_movies = df[df['country'] == 'United States']
+                               us_movies
+
+                  ==> Updating Rows and Columns
+                  
+                           ** df.drop : The drop() method in pandas is used to remove rows and columns from a DataFrame. 
+                                        It primary purpose is to drop specified labels from rows or columns. 
+
+                                parameters : 
+
+                                labels : The row or column labels to drop 
+
+                                axis : Specifies whether the labels refer to rows (axis = 0) or columns (axis = 1). By default, it's 0 (row)
+                                
+                                index or column :  An alternative way to specify the lables to drop, instead of using the labels paramter. 
+                                                   It is equivalent to specifying axis = 0 (for index) or axis = 1 (for columns). 
+
+                                inplace : If True, the operation is done in place, meaning it modifies the DataFrame directly and returns None. 
+                                          If False or not specified, it returns a new DataFrame with the specified labels dropped. 
+
+                                # df.drop(labels = 'title', axis = 1)
+
+                                
+
+                            
+                              
+                        
+
+                                   
 
                         
 
