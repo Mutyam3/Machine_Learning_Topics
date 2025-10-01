@@ -566,61 +566,199 @@
                                 inplace : If True, the operation is done in place, meaning it modifies the DataFrame directly and returns None. 
                                           If False or not specified, it returns a new DataFrame with the specified labels dropped. 
 
-                                # df.drop(labels = 'title', axis = 1)
+                                # df.drop(labels = 'title', axis = 1) 
 
-                                
+                                # df.drop(labels = 'title', axis = 1, inplace = True) # if you use inplace = true then it will drop the column from original dataframe. 
+                                    # default inplace = false 
 
-                            
+                              => Direct Assignment : Directly assign a value to a specific column or even a cell in a DataFrame. 
+
+                                         df.at[0, 'year'] = 1983 # changes the year of the first movie to 1983.
+                                         df.head(5)
+                              => Create a new column : 
+                               
+                                       df['new_column'] = 'default value' # Adds a new column with all entries set to 'default value'
+
+                              => Using loc for Conditional Updates : loc can be used to update rows and columns based on a condition. 
+
+                                       df.loc[df['year'] < 2000, 'classic'] = True # Marks Movies before 2000 as classic. it creates a column classic with values True based on condition 
+                                       df.loc[df['avg_vote'] > 8, ['top_rated', 'must_watch']] = [True, True] # Modifying multiple columns using loc. 
+
+                              => Using apply Function : The apply function allows you to apply a function along an axis of the DataFrame. 
+
+                                       df['length_category'] = df['duration'].apply(lambda x : 'Long' if x > 120 else 'Short')
+                                       df 
+
+                                       # create a DataFrame with multiple Series 
+                                       data = {
+                                            'A' : [1,2,3],
+                                            'B' : [4,5,6],
+                                            'C' : [7,8,9]
+                                       }
+
+                                       num_data = pd.DataFrame(data)
+
+                                       # Define a function to sum two series 
+                                       def sum_series(x,y):
+                                            return x + y
+
+                                       # Apply the function on multiple series using apply()
+                                         result = num_data.apply(lambda row: sum_series(row['A'], row['B']), axis = 1)
+
+                                       # Print the result 
+                                         print(result)
+
+                                        # Output 
+                                        0  5
+                                        1  7
+                                        2  9
+                                        dtype : int64
+
+                              => Updating Using map or replace : You can update a column based on a mapping dictionary or replace values. 
+
+                                       df['genre'].map({'Drama' : 'Drama Film', 'Comedy': 'Comedy Film'}) # Mapping existing values to new ones. # comedy ni comdey film ga marustunam
+                                       df 
+
+                                       # remaining nan chestadi values ni ade replace use cheste remaining values ni effect cheyadu
+
+                                       ade mulitple columns meda perform cheyali ante apply use chestam 
+                                       map tho matram kadhu 
+                                       
+                                       df['country'].replace('USA', 'United States', inplace = True) # Replcaing specific values. 
+                                       df 
+
+                              => Adding New Columns Based on Calculations : You can create new columns based on calculation
+
+                                       df['title_year'] = df['title'] + " ( " + df['year'].astype(str) + ")" # Creating a new Column by combining existing columns 
+                                       df 
+
+                              => Using assign to create columns : assign helps you add new columns to DataFrame in a functional style. 
+                               
+                                        df = df.assign(
+                                              is_older = lambda x : x['year'] < 2000,
+                                              duration_hours = lambda x : x['duration'] / 60
+                                        ) # Adding multiple new columns. 
+
+                              => Modifying index :  Changing the index of a DataFrame can be done directly or by setting it to one of the columns. 
+                                         
+                                        df.set_index('filmtv_id', inplace = True) # Setting a new Index 
+
+                        ==> Changing the name of Index : 
+
+                              Pandas allows you to rename the index of a DataFrame or Series, which can help in making the index more informative or
+                              aligning it with new data requirements. 
+
+                              # Renaming the index of a DataFrame 
                               
-                        
+                                 df.index.names = ['movie_id'] # Rename the index to movie_id 
 
-                                   
+                              # Renaming Column Indexes : 
 
-                        
+                                 df.rename(columns = {'year' : 'release_year', 'title' : 'movie_title'}, inplace = True)
 
-                       
+                        ==> Display Options : 
+
+                               # Set maximum number of rows and columns to display 
+
+                               pd.set_option('display.max_rows', 10)
+                               pd.set_option('display.max_Columns', 5)
+
+                               # Reset Options 
+
+                               pd.reset_option('display')
+
+                        ==> Grouping Data : 
+
+                              Grouping data is a powerful way to perform segemnt-wise analysis and break down the dataset into chunks based on 
+                              some criteria. 
+
+                                genre_groups =df.groupby('genre') # Groups the data by the 'genre' column 
+                                genre_groups 
+
+                                Output : < pandas.core.groupby.generic.DataFrameGroupBy object at 0x7925536b7e50 >
+
+                                for genre, group_data in genre_groups:
+                                      print(f"Genre: {genre}")
+                                      print(group_data)
+                                      print()
+
+                                # Output : 
+                                    genre :  History 
+                                      ........ 
+                                      ........ 
+
+                                year_genre_groups = df.groupby(['release_year', 'genre']) # Groups by year and genre 
+
+                        ==> Aggregation : 
+
+                                After Grouping, you might want to perform aggregation operations like sum,mean,count,etc., to summarize the data 
+
+                                # Simple Aggregation - calculating the Average 
+
+                                avg_duration_by_genre = df.groupby('genre')['duration'].mean() # Average duration per genre. 
+                                print(avg_duration_by_genre)
+
+                                # Multiple Aggregation on a Single Column 
+
+                                stats_by_genre = df.groupby('genre')['avg_vote'].agg([np.mean,np.std, np.min, np.max])
+                                print(stats_by_genre)
+
+                                # Different Aggregations for different columns 
+
+                                  complex_aggregation = df.groupby('genre').agg({
+                                      'duration' : np.mean # average duration 
+                                      'avg_vote' : [np.min, np.max], # min and max average votes 
+                                      'public_vote' : 'sum' # total of public votes 
+                                  })
+
+                                  complex_aggregation
+
+                                 # Aggregating without Grouping : Sometimes, you may want to perform aggregations without the need to group the data. 
+
+                                    # Overall summary statistics 
+                                      
+                                        overall_stats = df[['duration','avg_vote']].describe()
+                                        overall_stats
+
+                                 # df.count() : This method returns the number of non-null values on each DataFrame column. 
+                                                It can be used to count the number of non-null values in each column individually. 
+
+                                      # Create a DataFrame 
+                                         data = {'A' : {1,2,None}, 'B' : [4,None,6], 'C' : {None, 8, 9}}
+                                         data_Df = pd.DataFrame(data)
+
+                                      # Count non-null values in each column 
+                                          counts = data_df.count()
+                                          print(counts)
+
+                                 # df.value.counts() : This method returns the frequency counts of unique values in a Series. 
+                                                       It is typically used on a single column of the DataFrame and is useful for analyzing the distribution 
+                                                       of values within that column. 
+
+                                                  # Values Counts 
+                                                  df['movie_title'].value_counts()
+
+                                 # Custom Aggregation Functions : Pandas allows you to define and use custom aggregation functions for more specific data analysis needs. 
+
+                                          # Using a Custom function for aggregation 
+
+                                               def range_func(series) : 
+                                                   return series.max() - series.min()
+
+                                               range_by_genre = df.groupby('genre')['duration'].ag(range_func) # Range of durations by genre. 
+
+                                 # Renaming Grouped Aggregation Results : It is often useful to rename the results of aggregations for clarity or further analysis. 
+
+                                          # Renaming Aggregation Results : 
+
+                                                renamed_aggregations = df.groupby('genre')['avg_vote'].agg([
+                                                            ('Average Rating', 'mean'), # Renames the mean result to 'Average Rating'
+                                                            ('Rating standard Deviation', 'std') # Renames the std result to ' Rating Satndard Deviation'.         
+                                                ])
 
 
 
-
-                     
-
-
-
-
-
-
-
-
-
-
-
-                   
-
-
-
-
-
-
-
-            ==> Pandas Library : 
-             
-                 Useful for Data Processing and Analysis : 
-
-                 Pandas Data Frame : 
-                 ------------------ 
-
-                Pandas Dataframe is two-dimensional tabular datastructure with labeled axes (rows and columns)
-
-
-
-
-                  
-
-
-
-
-
+        
 
             </code>
         </pre>
