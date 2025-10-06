@@ -10,8 +10,145 @@
                 *** Matplotlib Tutorial *** 
                 --------------------------- 
 
-                
+               Matplotlib is a popular library in python. 
+               It was originally created by John D. Hunter in 2003 as a patch to IPython for 
+               enabling interactive MATLAB-style plotting via Gnuplot from the IPython command line. 
+               Python was still in its early days, and Matplotlib was one of the first libraries to offer 
+               robust capabilities for creating a wide range of static, animated, and interactive visualization in Python. 
+               It is particularly useful for those working in Python for data visualization and scientific computing.
+               Over the years, Matplotlib has evolved into a powerful library capable of producing complex plots with 
+               fine-tuned details. 
 
+               The library is designed to be understandable for beginners but powerful enough for experts.
+               Matplotlib allows for the creation for bar charts, scatter plots, histograms, error charts, power spectra, and much more, 
+               with just a few lines of code. 
+
+               To use Matplotlib, you first need to install it using pip if it's not already installed : 
+
+               !pip install matplotlib 
+
+               After installation, you import Matplotlib, typically its pyplot module, which provides a MATLAB-like interface. 
+               The standard convention is to import it under the alias plt. 
+
+               import matplotlib.pyplot as plt 
+                
+               import numpy as np 
+
+               ==> Creating and plotting a Linear Equation and a Quadratic Equation with Numpy and Matplotlib 
+
+                    A Linear equation in two variables (say, x and y) can be represented as y = mx +c, where m is the slope of the line, and 
+                    c is the y-intercept. 
+                    Let's plot a simple linear equation using Matplotlib and NumPy. 
+
+                1. Create an array for x values : Use Numpy to create an array of x values from which y values will be calculated. 
+
+                      x = np.linespace(start = -10, stop = 10, num = 400)
+                      print(x) # get the values from -10 to 10 with 400 numbers(values) => creates an array with 400 values 
+
+                2. Define the linear Equation : Specify the slope(m) and intercept (c). 
+
+                       m = 2 # Slope
+                       c = 3 # Intercept 
+                       y = mx + c
+
+                3. Plot the equation : Use Matplotlib to plot the line. 
+
+                           plt.plot(x,y, label = 'y=2x+3')
+                           plt.title('Plot the linear Equation')
+                           plt.xlabel('x')
+                           plt.ylabel('y')
+                           plt.xlim(0,10) # Lower Limit, Upper Limit 
+                           plt.ylim(0,20) # Lower Limit, Upper Limit 
+                           plt.grid(True) # background lo grinds vastai 
+                           plt.legend( )
+                           plt.savefig('Linear-equation.png')
+                           plt.show()
+
+                    In this Code : 
+
+                         => np.linespace(start,stop,num) generates num evenly spaced samples, calculated over the interval[start,stop]
+                         => plt.plot(x,y,label) plots y versus x as lines and / or markers with an optional label. 
+                         => plt.title(),plt.xlabel(),and plt.ylabel() are used to add a title and labels to the axes.
+                         => plt.grid(True) enables a grid to make reading the plot easier.
+                         => plt.savefig() allows you to save the figure in various file formats such as PNG, JPEG,SVG,PDF and more.
+                         => plt.show() displays the plot. 
+
+                    This will produce a graph of the linear equation y = 2x + 3, showing a straight line that cuts through the y-axis at 3 
+                    and has a slope of 2, rising two units in y for every increase of one unit in x. 
+
+                    A Quadratic equation typically has the form y = ax^2 + bx + c, where a, b and c are constants. 
+
+                    Here's how you can plot the quadratic equation y = x^2 - 4x + 4 : # a = 1 b = -4 c = 4.
+                    
+                    # Define the coefficients 
+
+                    a = 1 
+                    b = -4
+                    c = 4
+
+                    # Generate x values 
+
+                     x = np.linespace(-1,7,400)
+
+                    # Calculate y values using the quadratic equation 
+
+                      y = a * x ** 2 + b * x + c 
+
+                    # create the plot 
+
+                      plt.plot(x,y, label = 'y= x^2 - 4x + 4')
+
+                    # Adding title and labels 
+
+                       plt.title('Plot of the Quadratic Equation')
+                       plt.xlabel('x')
+                       plt.ylabel('y')
+
+                    # Add grid 
+                       plt.grid(True)
+
+                    # Show the plot 
+                        plt.show()
+
+                    
+                 In this Script : 
+
+                      => x = np.linspace(-1,7,400) generates 400 points between -1 and 7. The range is chosen to nicely show the 
+                         shape of the curve, including the vertex of the parabola. 
+
+                      => y = a * x ** 2 + b*X + c calculates the y-values based on the quadratic formula. 
+                         plt.plot(x,y,label='..') plots the equation and includes a label. 
+
+                      => plt.title(), plt.xlabel(), and plt.ylabel() set the title and labels of the axes. 
+
+                      => plt.grid(True) adds a grid to the plot improve readability. 
+
+                      => plt.show() displays the resulting plot. 
+
+                  You can adjust the coefficients a,b,and c to expose different forms of quadratic curves. 
+
+
+                  => Matplotlib Figure Object :
+
+                       
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+
+
+                
 
 
 
